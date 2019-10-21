@@ -5,6 +5,17 @@
 const path = require('path')
 
 module.exports = {
+  //当response 拦截器 拦截不了 401 ---error
+  //配置代理
+  proxyTable: {
+    '/': {
+      target: 'http://localhost:8230',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/': '/'
+      }
+    }
+  },
   dev: {
 
     // Paths
