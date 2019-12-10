@@ -1,18 +1,23 @@
 <template>
-  <el-row class="container">
-    <Item :type="'register'"/>
+  <el-row>
+    <Header :type="'register'"></Header>
+    <el-row class="container">
+      <Item :type="'register'"/>
+    </el-row>
   </el-row>
 </template>
 
 <script>
   import Item from '../components/Item'
+  import Header from '../components/Header'
   export default{
     data () {
       return {
       }
     },
     components: {
-      Item
+      Item ,
+      Header
     },
     methods: {}
   }
@@ -23,6 +28,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #fff;
   }
 </style>

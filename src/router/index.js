@@ -5,6 +5,7 @@ import Router from 'vue-router'
 
 import store from '../vuex/index'
 const Index = () => import('../pages/Index.vue')
+const SubmitQuestion = () => import('../pages/SubmitQuestion.vue')
 const Login = () => import('../pages/Login.vue')
 const Register = () => import('../pages/Register.vue')
 
@@ -16,12 +17,20 @@ const router = new Router({
   mode:"history",
   routes: [
     {
-      path: '/',
+      path: '/index',
       name: 'Index',
       component: Index,
-      meta: {
-        requiresAuth: true
-      }
+      // meta: {
+      //   requiresAuth: true
+      // }
+    },
+    {
+      path: '/submitQuestion',
+      name: 'SubmitQuestion',
+      component: SubmitQuestion,
+      // meta: {
+      //   requiresAuth: true
+      // }
     },
     {
       path: '/login',

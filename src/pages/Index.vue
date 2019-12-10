@@ -1,19 +1,21 @@
 <template>
-  <el-row class="container">
-    <div>首页</div>
-    <div class="logOut">
-      <el-button @click="logOut()">登出</el-button>
-    </div>
+  <el-row>
+    <Header :type="'register'"></Header>
+    <el-row class="container">
+      <p>这里显示所有问题</p>
+    </el-row>
   </el-row>
 </template>
 
 <script>
+  import Header from '../components/Header'
   export default{
     data () {
       return {
       }
     },
     components: {
+      Header
     },
     created () {
       // this.getUserInfo()
@@ -34,9 +36,8 @@
 
 <style scoped>
   .container {
-    text-align: center
-  }
-  .logOut {
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 </style>

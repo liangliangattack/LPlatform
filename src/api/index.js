@@ -45,10 +45,14 @@ instance.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.log(error.response)
+        // this.$notify({
+        //   title: 'token过期',
+        //   message: '登录失效,请重新登录',
+        //   type: 'warning'
+        // });
         router.replace({
-          path: 'register'
+          path: 'login'//登录过期（token失效）重新登录
         })
-        console.log(2)
       }
     }
     return Promise.reject(error.response)

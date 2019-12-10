@@ -1,18 +1,23 @@
 <template>
-  <el-row class="container">
-    <Item :type="'login'"/>
+  <el-row>
+    <Header :type="'register'"></Header>
+    <el-row class="container">
+      <Item :type="'login'"/>
+    </el-row>
   </el-row>
 </template>
 
 <script>
   import Item from '../components/Item'
+  import Header from '../components/Header'
   export default{
     data () {
       return {
       }
     },
     components: {
-      Item
+      Item,
+      Header
     },
     methods: {}
   }

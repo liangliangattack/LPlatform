@@ -9,10 +9,10 @@
       text-color="#fff"
       active-text-color="#00ffff">
 
-      <el-menu-item index="0"><img src="../assets/L_grey.jpg" style="width: 30px;height: 30px"/></el-menu-item>
-      <el-menu-item index="1">处理中心</el-menu-item>
+      <el-menu-item index="0"><img src="../assets/L_grey.jpg" style="width: .3rem;height: .3rem"/></el-menu-item>
+      <el-menu-item index="1">动态</el-menu-item>
       <el-submenu index="2">
-        <template slot="title">我的工作台</template>
+        <template slot="title">分类</template>
         <el-menu-item index="2-1">选项1</el-menu-item>
         <el-menu-item index="2-2">选项2</el-menu-item>
         <el-menu-item index="2-3">选项3</el-menu-item>
@@ -24,10 +24,10 @@
         </el-submenu>
       </el-submenu>
       <el-menu-item index="3" @click="tokenTest()">消息中心</el-menu-item>
+      <el-menu-item index="3" @click="submitQuestion()" v-show="this.token != null">发起问题</el-menu-item>
 
-
-      <el-submenu index="5" style="float: right">
-      <template slot="title">
+      <el-submenu index="5" style="float: right"   v-show="this.token != null">
+      <template slot="title" v-show="type === ''">
         <el-avatar @error="errorHandler">
           <img src="../assets/红月.jpg"/>
         </el-avatar>
@@ -41,7 +41,7 @@
         LoginOut
       </el-menu-item>
       </el-submenu>
-      <el-menu-item index="1" style="float: right"  v-if="this.token == null">
+      <el-menu-item index="1" style="float: right"  v-show="this.token === null">
         <el-avatar @error="errorHandler">
           <img src="../assets/github.png"/>
         </el-avatar>
@@ -65,6 +65,11 @@
         token: window.localStorage.getItem('token')
       };
     },
+    props:{
+      type:{
+        type: String
+      }
+    },
     methods: {
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
@@ -82,6 +87,10 @@
         console.log("当前token是："+this.token);
       },
 
+      submitQuestion:function(){//发起问题页面
+        this.$router.push({path:'/submitQuestion'});
+      },
+
       //token接口调用测试ing.........
       tokenTest:function () {
         //token检查
@@ -89,13 +98,11 @@
           .then(response => {
             if(response.status == 200){
               //请求成功
-              console.log("=======================ok!!====================");
               if(response.data.result == "ok"){
                 //数据返回成功
 
               }
             }else {
-              console.log("=======================not ok!!====================");
             }
           }).catch(error => {
             console.log(error);
@@ -126,9 +133,10 @@
 
 
 <style scoped>
-#Header{
-  font-weight: bolder;
-}
+  #Header{
+    font-weight: bolder;
+
+  }
   a{
     text-decoration: none;
   }

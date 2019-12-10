@@ -12,5 +12,5 @@ const mutations = {
     state.loginStatus = bool
   }
 }
-
+//布尔值 bool
 export default mutations
