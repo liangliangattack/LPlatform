@@ -36,7 +36,7 @@
             <el-row class="textInner">• 注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；</el-row>
             <el-row class="textInner">• 选择标签: 选择一个或者多个合适的标签，不超过10个字</el-row>
             <el-row class="textInner">• 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</el-row></el-row>
-        </el-col> class=textInner
+        </el-col>
       </el-row>
     </el-row>
   </el-row>
