@@ -10,35 +10,33 @@
             <span class="s1" style="float: right;margin-right: 1rem">问题</span>
           </el-row>
           <el-row class="lContent">
-            <p style="margin-bottom: -.35rem">问题：</p>
-            <el-input v-model="input" placeholder="问题标题..."></el-input>
-            <p>内容：</p>
+            <p style="margin-bottom: -.5rem">问题标题（简单扼要）:</p>
+            <el-input v-model="title" placeholder="问题标题..."></el-input>
+            <p style="margin-top: .5rem;margin-bottom: .1rem">问题补充 (必填，请参照右侧提示):</p>
             <el-input
               type="textarea"
               :rows="5"
               placeholder="请输入内容"
-              v-model="textarea">
+              v-model="content">
             </el-input>
+            <p style="margin-top: .5rem;margin-bottom: -.5rem">添加标签:</p>
+            <el-input v-model="label" placeholder="创建或搜索添加新话题..."></el-input>
           </el-row>
         </el-col>
         <el-col span="6" class="rBody">
-          <el-row class="">
-            问题发起指南
-            • 问题标题: 请用精简的语言描述您发布的问题，不超过25字
-
-            • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：
-
-            服务器运行环境信息；
-            软件版本；
-            问题发生的上下文信息；
-            可以完整复现问题的代码（如可直接运行于 Kibana Console 的复现流程）；
-            补充完整的异常和错误信息；
-            注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；
-            • 选择标签: 选择一个或者多个合适的标签，不超过10个字
-
-            • 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.
-          </el-row>
-        </el-col>
+          <el-row class="txt">
+            <el-row class="textInner">问题发起指南</el-row>
+            <el-row class="textInner">• 问题标题: 请用精简的语言描述您发布的问题，不超过25字</el-row>
+            <el-row class="textInner">• 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：</el-row>
+            <el-row class="textInner">• 服务器运行环境信息；</el-row>
+            <el-row class="textInner">• 软件版本；</el-row>
+            <el-row class="textInner">• 问题发生的上下文信息；</el-row>
+            <el-row class="textInner">• 可以完整复现问题的代码（如可直接运行于 Kibana Console 的复现流程）；</el-row>
+            <el-row class="textInner">• 补充完整的异常和错误信息；</el-row>
+            <el-row class="textInner">• 注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；</el-row>
+            <el-row class="textInner">• 选择标签: 选择一个或者多个合适的标签，不超过10个字</el-row>
+            <el-row class="textInner">• 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</el-row></el-row>
+        </el-col> class=textInner
       </el-row>
     </el-row>
   </el-row>
@@ -49,6 +47,10 @@
   export default{
     data () {
       return {
+        title:"",
+        content:"",
+        label:"",
+
       }
     },
     components: {
@@ -111,7 +113,10 @@
   .rBody {
     height: 10rem;
     font-size: .25rem;
-    padding: .15rem;
+    padding: .4rem .3rem 0 .3rem;
+  }
+  .textInner {
+
   }
   .lContent{
     width: 100%;
