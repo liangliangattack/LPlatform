@@ -20,8 +20,8 @@ function setHtmlFontSize(){
   const htmlWidth = document.documentElement.clientWidth || document.body.clientWidth;
   const htmlDom = document.getElementsByTagName('html')[0];
   htmlDom.style.fontSize = htmlWidth / 25 + 'px';//我的电脑分辨率开发px为 60=1rem
-  console.log("main.js ---------------");
-  console.log(htmlDom.style.fontSize);
+  // console.log("main.js ---------------");
+  // console.log(htmlDom.style.fontSize);
 };
 setHtmlFontSize();
 

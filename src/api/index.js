@@ -33,6 +33,7 @@ export let instance = Axios.create({
 //     return Promise.reject(error.response)
 //   }
 // )
+
 instance.interceptors.response.use(
   response => {
     //如果没错 就在这里拦截
@@ -68,4 +69,17 @@ export const login = ({ userName, password }) => {
 
 export const getMessage = () => {
   return instance.get('author/getMessage')
+}
+
+export const addQuestion = (inputData) => {
+  return instance.post('ques/addQuestion',{
+      title:inputData.title,
+      creator:inputData.creator,
+      tag:inputData.tag,
+      content:inputData.content,
+  },{
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  })
 }

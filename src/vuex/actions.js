@@ -1,8 +1,19 @@
 import * as types from './types'
 //引入 Axios实例、login、getUserInfo
-import { instance, login, getMessage } from '../api'
+import { instance, login, getMessage, addQuestion } from '../api'
 
 export default {
+  toAddQuestion ({ commit } , inputData) {
+    return new Promise((resolve, reject) => {
+      addQuestion(inputData).then(res => {
+        if (res.status === 200) {
+        }
+        resolve(res)
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  },
   //commit是存放结果 info是username和password
   toLogin ({ commit }, info) {
     return new Promise((resolve, reject) => { //成功的时候调用resolve 失败的时候调用reject

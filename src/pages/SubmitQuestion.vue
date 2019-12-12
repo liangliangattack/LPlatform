@@ -20,7 +20,10 @@
               v-model="content">
             </el-input>
             <p style="margin-top: .5rem;margin-bottom: -.5rem">添加标签:</p>
-            <el-input v-model="label" placeholder="创建或搜索添加新话题..."></el-input>
+            <el-input v-model="tag" placeholder="创建或搜索添加新话题..."></el-input>
+          </el-row>
+          <el-row class="submitBody">
+            <el-button type="info" class="submitButton" @click="addQuestion()">提交</el-button>
           </el-row>
         </el-col>
         <el-col span="6" class="rBody">
@@ -48,27 +51,60 @@
     data () {
       return {
         title:"",
+        creator:"",
+        tag:"",
         content:"",
-        label:"",
-
       }
     },
     components: {
       Header
     },
-    created () {
-      // this.getUserInfo()
-    },
     methods: {
-      getUserInfo () {
-        this.$store.dispatch('getUser')
+      addQuestion:function () {//发起问题
+        if (this.title === '') {
+          this.$message.warning('标题不能为空')
+        } else if (this.content === '') {
+          this.$message.warning('内容不能为空')
+        } else {
+          this.$store.dispatch('toAddQuestion', this.getDataTemplate("normalTemplate"))
+            .then((res) => {
+              console.log(res);
+              console.log(res.status);
+              if(res.status == 200){
+                console.log(res);
+                this.$message.success(res.data.successMessage)
+                this.$router.push({path: '/index'})
+              }
+              // this.$store.dispatch('getUser')
+              // let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')
+              // console.log(redirectUrl)
+              // // 跳转到指定的路由
+              // this.$router.push({
+              //   path: redirectUrl
+              // })
+            }).catch((error) => {
+            console.log(error.response.data.message)
+          })
+        }
       },
-      logOut () {
-        this.$store.dispatch('logOut')
-        this.$router.push({
-          path: '/login'
-        })
-      }
+      getDataTemplate:function (inputInfo) {
+        let outputData = {};
+        switch (inputInfo) {
+          case "defaultTemplate": outputData = {
+            title:this.title,
+            creator:this.creator,
+            tag:this.tag,
+            content:this.content,
+          };break;
+          case "normalTemplate":outputData = {
+            title:this.title,
+            creator:this.creator,
+            tag:this.tag,
+            content:this.content,
+          };break;
+        }
+        return outputData;
+      },
     }
   }
 </script>
@@ -112,7 +148,7 @@
 
   .rBody {
     height: 10rem;
-    font-size: .25rem;
+    font-size: .2rem;
     padding: .4rem .3rem 0 .3rem;
   }
   .textInner {
@@ -120,10 +156,17 @@
   }
   .lContent{
     width: 100%;
+    height: 75%;
     padding: .4rem;
-    /*height: 2rem;*/
   }
   .lContent > p{
     margin: 0;
+  }
+  .submitBody {
+    height: .5rem;
+  }
+  .submitButton{
+    float: right;
+    margin-right: 1rem;
   }
 </style>

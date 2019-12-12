@@ -58,13 +58,11 @@
           this.$store.dispatch('toLogin', {
             userName: this.userName,
             password: this.password
-          }).then(
-            (res) => {
+          }).then((res) => {
               if(res.status == 200){
                 console.log("登录成功");
-                this.$router.push({
-                  path: '/Index'
-                })
+                console.log("看得见么");
+                this.$router.push({path: '/index'})
               }
             // this.$store.dispatch('getUser')
             // let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')
@@ -73,8 +71,7 @@
             // this.$router.push({
             //   path: redirectUrl
             // })
-          }
-          ).catch((error) => {
+          }).catch((error) => {
             console.log(error.response.data.message)
           })
         }
