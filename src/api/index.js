@@ -46,14 +46,7 @@ instance.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.log(error.response)
-        // this.$notify({
-        //   title: 'token过期',
-        //   message: '登录失效,请重新登录',
-        //   type: 'warning'
-        // });
-        router.replace({
-          path: 'login'//登录过期（token失效）重新登录
-        })
+        router.replace({path: 'login'})//登录过期（token失效）重新登录
       }
     }
     return Promise.reject(error.response)
@@ -67,8 +60,16 @@ export const login = ({ userName, password }) => {
   })
 }
 
+export const register = ( inputData) => {
+  return instance.post('author/register', {
+    userName: inputData.userName,
+    password: inputData.password,
+    avatarUrl: inputData.avatarUrl,
+  })
+}
+
 export const getMessage = () => {
-  return instance.get('author/getMessage')
+  return instance.post('author/getMessage')
 }
 
 export const addQuestion = (inputData) => {

@@ -1,6 +1,6 @@
 import * as types from './types'
 //引入 Axios实例、login、getUserInfo
-import { instance, login, getMessage, addQuestion } from '../api'
+import { instance, login,register, getMessage, addQuestion } from '../api'
 
 export default {
   toAddQuestion ({ commit } , inputData) {
@@ -22,11 +22,25 @@ export default {
           console.log(res)
           commit(types.LOGIN, res.data.token)   //token
           commit(types.USERINFO, res.data.data.user)  //用户信息
+          commit(types.AVATARURL, res.data.data.avatarUrl)  //头像信息
           commit(types.LOGINSTATUS, true)  //登录状态
           instance.defaults.headers.common['Authorization'] = `Bearer ` + res.data.token
           window.localStorage.setItem('token', res.data.token)  //token
+          window.localStorage.setItem('avatarUrl', res.data.data.avatarUrl)  //头像
           resolve(res)
         }
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  },
+  //commit是存放结果 info是username和password
+  toRegister ({ commit }, inputData) {
+    return new Promise((resolve, reject) => { //成功的时候调用resolve 失败的时候调用reject
+      register(inputData).then(res => {
+        if (res.status === 200) {
+        }
+        resolve(res)
       }).catch((error) => {
         reject(error)
       })

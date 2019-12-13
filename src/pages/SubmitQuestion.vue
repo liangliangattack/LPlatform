@@ -68,12 +68,16 @@
         } else {
           this.$store.dispatch('toAddQuestion', this.getDataTemplate("normalTemplate"))
             .then((res) => {
-              console.log(res);
-              console.log(res.status);
               if(res.status == 200){
-                console.log(res);
                 this.$message.success(res.data.successMessage)
                 this.$router.push({path: '/index'})
+              }else if(res.status == 401){
+                console.log(res.status);
+                this.$notify({
+                  title: 'token过期',
+                  message: '登录失效,请重新登录',
+                  type: 'warning'
+                });
               }
               // this.$store.dispatch('getUser')
               // let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')

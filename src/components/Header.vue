@@ -27,9 +27,9 @@
       <el-menu-item index="3" @click="submitQuestion()" v-show="this.token != null">发起问题</el-menu-item>
 
       <el-submenu index="5" style="float: right"   v-show="this.token != null">
-      <template slot="title" v-show="type === ''">
+      <template slot="title" v-show="type === ''" class="mine">
         <el-avatar @error="errorHandler">
-          <img src="../assets/红月.jpg"/>
+          <img :src="avatarUrl"/>
         </el-avatar>
       </template>
       <el-menu-item index="5-1">
@@ -62,7 +62,10 @@
     data() {
       return {
         activeIndex2: '1',
-        token: window.localStorage.getItem('token')
+        token: window.localStorage.getItem('token'),
+        // avatarUrl: this.$store.getters.getAvatarUrl,//刷新就没了
+        avatarUrl: window.localStorage.getItem('avatarUrl'),
+        loginStatus: this.$store.getters.getLoginStatus,
       };
     },
     props:{
@@ -79,12 +82,13 @@
       },
       //退出登录
       loginOut:function () {
-
-        this.$router.push({path:'/Login'});
+        this.$router.push({path:'/login'});
       },
       //打印token
       my:function () {
         console.log("当前token是："+this.token);
+        console.log("当前图片是："+this.avatarUrl);
+        console.log("登录状态："+this.loginStatus);
       },
 
       submitQuestion:function(){//发起问题页面
@@ -107,7 +111,7 @@
           }).catch(error => {
             console.log(error);
           });
-      }
+      },
     },
     mounted() {
       this.my();

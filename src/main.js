@@ -23,7 +23,7 @@ function setHtmlFontSize(){
   // console.log("main.js ---------------");
   // console.log(htmlDom.style.fontSize);
 };
-setHtmlFontSize();
+// setHtmlFontSize();
 
 
 //模板参数必须要有,这里引用了app根组件(根组件对应的html标签形式也就是<app/>),定义的template会在main.js转换为app.js时

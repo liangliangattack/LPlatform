@@ -2,9 +2,10 @@
   <el-row class="login-style">
     <h2 v-show = "type === 'register'">注册</h2>
     <h2 v-show = "type === 'login'">登录</h2>
-    <el-input placeholder="用户名" v-model="userName"></el-input>
-    <el-input type="password" placeholder="密码" v-model="password"></el-input>
-    <el-input type="password" placeholder="确认密码" v-if = "type === 'register'" v-model="re_password"></el-input>
+    <el-input class="inputMine" placeholder="用户名" v-model="userName"></el-input>
+    <el-input class="inputMine" type="password" placeholder="密码" v-model="password"></el-input>
+    <el-input class="" type="password" placeholder="确认密码" v-if = "type === 'register'" v-model="re_password"></el-input>
+    <el-input class="" type="textarea" :rows="3" placeholder="确认头像url" v-if = "type === 'register'" v-model="avatarUrl"></el-input>
     <el-button type="primary" v-if = "type === 'register'" @click="signUp()">注册</el-button>
     <el-button type="primary" v-else @click="login()">登录</el-button>
     <el-button type="danger" icon="el-icon-delete" @click="loginOut" circle></el-button>
@@ -22,7 +23,8 @@
         userName: '',
         password: '',
         re_password: '',
-        sayhub_token: ''
+        sayhub_token: '',
+        avatarUrl: '',
       }
     },
     //子组件在props中创建一个属性，用以接收父组件(Login、register)传过来的值
@@ -46,6 +48,21 @@
           this.$message.warning('密码不能为空哦~~')
         }else if (this.re_password === '') {
           this.$message.warning('确认密码不能为空哦~~')
+        }else{
+          this.$store.dispatch("toRegister",{
+            userName: this.userName,
+            password: this.password,
+            avatarUrl: this.avatarUrl
+          }).then((res) => {
+            if(res.status == 200){
+              this.$notify({
+                title: '注册',
+                message: res.data.successMessage+"",
+                type: 'info'
+              });
+              this.$router.push({path: '/login'})
+            }
+          })
         }
       },
       // 登陆
@@ -109,6 +126,12 @@
     width: 5rem;
     box-shadow: 0 0.02rem 0.05rem 0 rgba(0, 34, 77, 0.5);
     margin: .83rem auto;
+  }
+  p{
+    cursor: pointer;
+  }
+  .inputMine {
+    margin-bottom: -.6rem;
   }
 
 </style>

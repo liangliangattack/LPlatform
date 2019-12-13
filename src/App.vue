@@ -27,7 +27,7 @@ export default {
 
 <style>
   html{
-    /*font-size: 60px;*/
+    font-size: 60px;
   }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
