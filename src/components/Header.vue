@@ -10,7 +10,7 @@
       active-text-color="#00ffff">
 
       <el-menu-item index="0"><img src="../assets/L_grey.jpg" style="width: .3rem;height: .3rem"/></el-menu-item>
-      <el-menu-item index="1">动态</el-menu-item>
+      <el-menu-item index="1" @click="gotoIndex()">动态</el-menu-item>
       <el-submenu index="2">
         <template slot="title">分类</template>
         <el-menu-item index="2-1">选项1</el-menu-item>
@@ -90,7 +90,9 @@
         console.log("当前图片是："+this.avatarUrl);
         console.log("登录状态："+this.loginStatus);
       },
-
+      gotoIndex:function(){
+        this.$router.push({path:'/index'});
+      },
       submitQuestion:function(){//发起问题页面
         this.$router.push({path:'/submitQuestion'});
       },
