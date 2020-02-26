@@ -11,8 +11,17 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import store from './vuex'
 
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'    // 使用 CSS
+
+import $ from 'jquery'
+//bootstrap3
+import'bootstrap3/dist/css/bootstrap.css'
+// import'bootstrap3/js/bootstrap.js'
+
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+Vue.use(iView)
 
 //动态设置font-size
 window.onresize = setHtmlFontSize;

@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <Header :type="'register'"></Header>
+    <Header :type="'login'"></Header>
     <el-row class="container">
       <Item :type="'login'"/>
     </el-row>

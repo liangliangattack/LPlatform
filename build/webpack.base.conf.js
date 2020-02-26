@@ -1,4 +1,5 @@
 'use strict'
+const webpack = require('webpack');
 const path = require('path')
 const utils = require('./utils')
 const config = require('../config')
@@ -11,6 +12,14 @@ function resolve (dir) {
 
 
 module.exports = {
+  //添加一个plugin
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin('common.js'),
+    new webpack.ProvidePlugin({
+      jQuery: "jquery",
+      $: "jquery"
+    })
+  ],
   context: path.resolve(__dirname, '../'),
   entry: {
     app: './src/main.js'
@@ -27,7 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-    }
+    },
   },
   module: {
     rules: [
@@ -78,5 +87,5 @@ module.exports = {
     net: 'empty',
     tls: 'empty',
     child_process: 'empty'
-  }
+  },
 }

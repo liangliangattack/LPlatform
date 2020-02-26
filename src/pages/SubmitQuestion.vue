@@ -10,7 +10,7 @@
             <span class="s1" style="float: right;margin-right: 1rem">问题</span>
           </el-row>
           <el-row class="lContent">
-            <p style="margin-bottom: -.5rem">问题标题（简单扼要）:</p>
+            <p >问题标题（简单扼要）:</p>
             <el-input v-model="title" placeholder="问题标题..."></el-input>
             <p style="margin-top: .5rem;margin-bottom: .1rem">问题补充 (必填，请参照右侧提示):</p>
             <el-input
@@ -19,7 +19,7 @@
               placeholder="请输入内容"
               v-model="content">
             </el-input>
-            <p style="margin-top: .5rem;margin-bottom: -.5rem">添加标签:</p>
+            <p style="margin-top: .5rem;">添加标签:</p>
             <el-input v-model="tag" placeholder="创建或搜索添加新话题..."></el-input>
           </el-row>
           <el-row class="submitBody">
@@ -38,7 +38,8 @@
             <el-row class="textInner">• 补充完整的异常和错误信息；</el-row>
             <el-row class="textInner">• 注意阅读格式友好，代码和异常信息请用代码标签格式化张贴；</el-row>
             <el-row class="textInner">• 选择标签: 选择一个或者多个合适的标签，不超过10个字</el-row>
-            <el-row class="textInner">• 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</el-row></el-row>
+            <el-row class="textInner">• 关于积分： 发起一个问题会消耗您 20 个积分, 每多一个回复你将获得 5 个积分的奖励 ,为了您的利益, 在发起问题的时候希望能够更好的描述您的问题以及多使用站内搜索功能.</el-row>
+          </el-row>
         </el-col>
       </el-row>
     </el-row>
@@ -51,7 +52,7 @@
     data () {
       return {
         title:"",
-        creator:"",
+        creator:window.localStorage.getItem('userId'),
         tag:"",
         content:"",
       }
@@ -117,12 +118,13 @@
   .background{
     background: #cccccc;
     width: 100%;
-    height: 11rem;
+    height: 13rem;
   }
   .container{
-    width: 24rem;
+    width: 20rem;
     background: white;
     margin: .5rem auto;
+    padding: 0;/*消除bootstrap的container的css*/
   }
   .lBody {
     background: #fff;
@@ -143,9 +145,9 @@
   }
   /*相对布局*/
   .lTitle .s1{
-    font-weight: bolder;
     position: relative;
-    top: .3rem;
+    top: .4rem;
+    font-size: .25rem;
     /*background: #78dded;*/
     /*padding: .03rem ;*/
   }

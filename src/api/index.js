@@ -10,7 +10,7 @@ if (window.localStorage.getItem('token')) {
 
 //build.js中定义process.env.NODE_ENV 是否是生产环境来使用不同的url
 export let instance = Axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'http://120.55.124.53:8230' : 'http://localhost:8230'
+  baseURL: process.env.NODE_ENV === 'production' ? 'http://120.55.124.53:8230' : 'http://localhost:8769'
 })
 // respone拦截器
 // instance.interceptors.response.use(
@@ -54,14 +54,14 @@ instance.interceptors.response.use(
 )
 
 export const login = ({ userName, password }) => {
-  return instance.post('author/login', {
+  return instance.post('apiAdmin/admin/login', {
     userName: userName,
     password: password
   })
 }
 
 export const register = ( inputData) => {
-  return instance.post('author/register', {
+  return instance.post('apiAdmin/admin/register', {
     userName: inputData.userName,
     password: inputData.password,
     avatarUrl: inputData.avatarUrl,
@@ -69,16 +69,26 @@ export const register = ( inputData) => {
 }
 
 export const getMessage = () => {
-  return instance.post('author/getMessage')
+  return instance.post('apiAdmin/author/getMessage')
 }
 
 export const addQuestion = (inputData) => {
-  return instance.post('ques/addQuestion',{
+  return instance.post('apiSystem/ques/addQuestion',{
       title:inputData.title,
       creator:inputData.creator,
       tag:inputData.tag,
       content:inputData.content,
   },{
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export const getQuestions = (inputData) => {
+  return instance.post('apiSystem/ques/getQuestions/'+inputData.page+"/"+inputData.pageSize,
+    {},
+    {
     headers:{
       'Content-Type': 'application/json'
     }

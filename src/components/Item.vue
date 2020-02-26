@@ -127,6 +127,9 @@
     box-shadow: 0 0.02rem 0.05rem 0 rgba(0, 34, 77, 0.5);
     margin: .83rem auto;
   }
+  h2{
+    margin: 1rem 1rem;
+  }
   p{
     cursor: pointer;
   }

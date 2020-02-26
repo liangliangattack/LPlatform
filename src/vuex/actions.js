@@ -1,11 +1,22 @@
 import * as types from './types'
 //引入 Axios实例、login、getUserInfo
-import { instance, login,register, getMessage, addQuestion } from '../api'
+import { instance, login,register, getMessage, addQuestion ,getQuestions } from '../api'
 
 export default {
   toAddQuestion ({ commit } , inputData) {
     return new Promise((resolve, reject) => {
       addQuestion(inputData).then(res => {
+        if (res.status === 200) {
+        }
+        resolve(res)
+      }).catch((error) => {
+        reject(error)
+      })
+    })
+  },
+  toGetQuestions ({ commit } , inputData) {
+    return new Promise((resolve, reject) => {
+      getQuestions(inputData).then(res => {
         if (res.status === 200) {
         }
         resolve(res)
@@ -27,6 +38,8 @@ export default {
           instance.defaults.headers.common['Authorization'] = `Bearer ` + res.data.token
           window.localStorage.setItem('token', res.data.token)  //token
           window.localStorage.setItem('avatarUrl', res.data.data.avatarUrl)  //头像
+          window.localStorage.setItem('userId', res.data.data.id)  //头像
+          window.localStorage.setItem('userName', res.data.data.name)  //用户名
           resolve(res)
         }
       }).catch((error) => {

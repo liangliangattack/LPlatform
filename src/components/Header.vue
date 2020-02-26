@@ -24,29 +24,37 @@
         </el-submenu>
       </el-submenu>
       <el-menu-item index="3" @click="tokenTest()">消息中心</el-menu-item>
-      <el-menu-item index="3" @click="submitQuestion()" v-show="this.token != null">发起问题</el-menu-item>
+      <el-menu-item index="4" @click="submitQuestion()" v-show="this.token != null">发起问题</el-menu-item>
 
-      <el-submenu index="5" style="float: right"   v-show="this.token != null">
-      <template slot="title" v-show="type === ''" class="mine">
-        <el-avatar @error="errorHandler">
-          <img :src="avatarUrl"/>
-        </el-avatar>
-      </template>
-      <el-menu-item index="5-1">
-        <i class="el-icon-s-tools"></i>
-        Setting
-      </el-menu-item>
-      <el-menu-item index="5-2" @click="loginOut()">
-        <i class="el-icon-back"></i>
-        LoginOut
-      </el-menu-item>
+      <el-submenu index="6" style="float: right"   v-show="this.token != null">
+<!--        跳转到login或者注册页面的时候type都有值,不传就是空的-->
+        <template slot="title" v-show="type === ''" class="mine">
+          <el-avatar @error="errorHandler">
+            <img :src="avatarUrl"/>
+          </el-avatar>
+        </template>
+        <el-menu-item index="5-1">
+          <i class="el-icon-s-tools"></i>
+          我的
+        </el-menu-item>
+        <el-menu-item index="5-2">
+          <i class="el-icon-s-tools"></i>
+          Setting
+        </el-menu-item>
+        <el-menu-item index="5-3" @click="loginOut()">
+          <i class="el-icon-back"></i>
+          LoginOut
+        </el-menu-item>
       </el-submenu>
       <el-menu-item index="1" style="float: right"  v-show="this.token === null">
         <el-avatar @error="errorHandler">
           <img src="../assets/github.png"/>
         </el-avatar>
-        <a href="https://github.com/login/oauth/authorize?client_id=0e5beec3e6398c0c0ad6">登录</a>
+<!--        <a href="https://github.com/login/oauth/authorize?client_id=0e5beec3e6398c0c0ad6">登录</a>-->
+        <a href="#" @click="loginOut()">登录</a>
       </el-menu-item>
+      <el-menu-item index="6"  style="float: right">{{userName}}</el-menu-item><!--   用户名   -->
+
 
     </el-menu>
 
@@ -65,6 +73,7 @@
         token: window.localStorage.getItem('token'),
         // avatarUrl: this.$store.getters.getAvatarUrl,//刷新就没了
         avatarUrl: window.localStorage.getItem('avatarUrl'),
+        userName: window.localStorage.getItem('userName'),
         loginStatus: this.$store.getters.getLoginStatus,
       };
     },

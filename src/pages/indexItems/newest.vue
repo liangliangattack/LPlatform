@@ -1,12 +1,16 @@
 <template>
-  <div id="Login">
-    <h1 style="color: brown">hello template</h1>
+  <div>
+    <header/>
+    <div>
+      心
+    </div>
   </div>
+
 </template>
 
 <script>
   export default {
-    name: "Login"
+    name: "newest"
   }
 </script>
 
