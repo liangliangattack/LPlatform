@@ -6,8 +6,10 @@ import Router from 'vue-router'
 import store from '../vuex/index'
 const Index = () => import('../pages/Index.vue')
 const SubmitQuestion = () => import('../pages/SubmitQuestion.vue')
+const QuestionDetail = () => import('../pages/QuestionDetail.vue')
 const Login = () => import('../pages/Login.vue')
 const Register = () => import('../pages/Register.vue')
+const Error500 = () => import('../pages/error/Error500.vue')
 
 Vue.use(Router)
 
@@ -33,6 +35,11 @@ const router = new Router({
       // }
     },
     {
+      path: '/questionDetail',
+      name: 'QuestionDetail',
+      component: QuestionDetail,
+    },
+    {
       path: '/login',
       name: 'Login',
       component: Login
@@ -41,7 +48,12 @@ const router = new Router({
       path: '/register',
       name: 'Register',
       component: Register
-    }
+    },
+    {
+      path: '/error500',
+      name: 'Error500',
+      component: Error500
+    },
   ]
 })
 

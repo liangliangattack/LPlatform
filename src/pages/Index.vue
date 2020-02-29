@@ -19,6 +19,11 @@
           <img src="../../static/img/ad.png" style="width: 4.4rem;height: 4.4rem;" alt="错误">
         </el-col>
       </el-row>
+      <BackTop :height="400" :bottom="100">
+        <div class="top">
+          <img src="../../static/img/up.png" style="width: .3rem;height: .3rem;">
+        </div>
+      </BackTop>
     </el-row>
   </el-row>
 </template>
@@ -72,20 +77,29 @@
 
 <style scoped>
   .background{
+    margin-top: .8rem;
     background: #cccccc;
     width: 100%;
     height: 30rem;
   }
+  .top{
+    padding: .2rem;
+    background: rgba(0, 10, 16, 0.7);
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+  }
+
   .container{
     width: 20rem;
     height: 95%;
     background: white;
     margin: .5rem auto;
     padding: 0;/*消除bootstrap的container的css*/
+    border-radius: .1rem;
   }
   .lBody {
     height: 100%;
-    background: #fff;
     border-right: 0.01rem #cccccc solid;
   }
   .lTitle{

@@ -11,7 +11,7 @@
             <div class="media-body qRight">
               <h4 class="media-heading qRTitle" style="color: #1760ab;">{{item.title}}</h4>
               <p class="media-bottom qRBottom" style="color: #747474">
-                {{item.luser.name}}&nbsp;&nbsp;发起了问题&nbsp;&nbsp;•&nbsp;
+                {{item.luser.luName}}-{{item.luser.uliName}} &nbsp;&nbsp;发起了问题&nbsp;&nbsp;•&nbsp;
                 {{item.viewCount}}人浏览&nbsp;&nbsp;•&nbsp;
                 {{item.starCount}}人收藏&nbsp;&nbsp;•&nbsp;&nbsp;
                 {{item.commentCount}}人评论&nbsp;&nbsp;&nbsp;&nbsp;
@@ -76,7 +76,6 @@
             if(res.status == 200){
               this.list = res.data.data;
               this.page.total = res.data.cursor.total;
-              this.$router.push({path: '/index'})
 
             }else if(res.status == 401){
               console.log(res.status);

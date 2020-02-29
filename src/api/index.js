@@ -1,8 +1,10 @@
 import Axios from 'axios'
 import router from '../router'
 
+console.log("有头么？")
 //token检查
 if (window.localStorage.getItem('token')) {
+  console.log("加入头信息")
   Axios.defaults.headers.common['token'] = window.localStorage.getItem('token')
 }
 
@@ -46,7 +48,11 @@ instance.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         console.log(error.response)
+        alert("登录过期（token失效），请重新登录")
         router.replace({path: 'login'})//登录过期（token失效）重新登录
+      }
+      if (error.response.status === 500) {
+        router.replace({path: 'error500'})
       }
     }
     return Promise.reject(error.response)
@@ -54,6 +60,7 @@ instance.interceptors.response.use(
 )
 
 export const login = ({ userName, password }) => {
+
   return instance.post('apiAdmin/admin/login', {
     userName: userName,
     password: password
@@ -85,12 +92,14 @@ export const addQuestion = (inputData) => {
   })
 }
 
+//login之后需要同时获取数据 如果不特地加入token 跳转index会报401
 export const getQuestions = (inputData) => {
   return instance.post('apiSystem/ques/getQuestions/'+inputData.page+"/"+inputData.pageSize,
     {},
     {
     headers:{
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'token': window.localStorage.getItem('token')
     }
   })
 }

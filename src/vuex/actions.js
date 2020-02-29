@@ -36,10 +36,11 @@ export default {
           commit(types.AVATARURL, res.data.data.avatarUrl)  //头像信息
           commit(types.LOGINSTATUS, true)  //登录状态
           instance.defaults.headers.common['Authorization'] = `Bearer ` + res.data.token
-          window.localStorage.setItem('token', res.data.token)  //token
-          window.localStorage.setItem('avatarUrl', res.data.data.avatarUrl)  //头像
-          window.localStorage.setItem('userId', res.data.data.id)  //头像
-          window.localStorage.setItem('userName', res.data.data.name)  //用户名
+          localStorage.setItem('token', res.data.token)  //token
+          localStorage.setItem('avatarUrl', res.data.data.avatarUrl)  //头像
+          localStorage.setItem('userId', res.data.data.id)  //头像
+          localStorage.setItem('userName', res.data.data.luName)  //用户名
+          console.log(localStorage)
           resolve(res)
         }
       }).catch((error) => {
@@ -78,7 +79,20 @@ export default {
       commit(types.USERINFO, null)
       commit(types.LOGINSTATUS, false)
       commit(types.LOGIN, '')
-      window.localStorage.removeItem('token')
+      localStorage.removeItem('token')
+      localStorage.removeItem('avatarUrl')  //头像
+      localStorage.removeItem('userId')  //头像
+      localStorage.removeItem('userName')  //用户名
+      localStorage.clear();
     })
-  }
+  },
+
+
 }
+
+// Promise.all([this.toLogin,])
+//   .then(() => {
+//     this.$router.push({path: '/index'})
+//   }).catch((error) => {
+//   console.log(error)
+// })

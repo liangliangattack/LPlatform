@@ -116,6 +116,7 @@
 
 <style scoped>
   .background{
+    margin-top: .8rem;
     background: #cccccc;
     width: 100%;
     height: 13rem;
@@ -125,9 +126,9 @@
     background: white;
     margin: .5rem auto;
     padding: 0;/*消除bootstrap的container的css*/
+    border-radius: .1rem;
   }
   .lBody {
-    background: #fff;
     height: 10rem;
     border-right: 0.01rem #cccccc solid;
   }

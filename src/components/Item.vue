@@ -77,17 +77,14 @@
             password: this.password
           }).then((res) => {
               if(res.status == 200){
-                console.log("登录成功");
-                console.log("看得见么");
-                this.$router.push({path: '/index'})
+                if(res.data.data != null){
+                  // location.reload();//需要reload 刷新一下token 不然天天401
+                  this.$message('token匹配成功 登陆成功');
+                  this.$router.push({path:'/index'});
+
+
+                }
               }
-            // this.$store.dispatch('getUser')
-            // let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')
-            // console.log(redirectUrl)
-            // // 跳转到指定的路由
-            // this.$router.push({
-            //   path: redirectUrl
-            // })
           }).catch((error) => {
             console.log(error.response.data.message)
           })
@@ -98,6 +95,7 @@
         this.$store.dispatch("loginOut",{})
           .then(res => {
             console.log("销毁token成功")
+
           }).catch(error => {
           console.log(error)
         })
@@ -108,11 +106,13 @@
           .then(res => {
             console.log(res)
           }).catch()
-      }
+      },
+
     },
     mounted() {
 
-    }
+    },
+
   }
 </script>
 
@@ -125,7 +125,7 @@
     background: #fff;
     width: 5rem;
     box-shadow: 0 0.02rem 0.05rem 0 rgba(0, 34, 77, 0.5);
-    margin: .83rem auto;
+    margin: 1.83rem auto;
   }
   h2{
     margin: 1rem 1rem;

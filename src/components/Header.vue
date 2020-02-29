@@ -51,7 +51,7 @@
           <img src="../assets/github.png"/>
         </el-avatar>
 <!--        <a href="https://github.com/login/oauth/authorize?client_id=0e5beec3e6398c0c0ad6">登录</a>-->
-        <a href="#" @click="loginOut()">登录</a>
+        <a href="#" @click="login()">登录</a>
       </el-menu-item>
       <el-menu-item index="6"  style="float: right">{{userName}}</el-menu-item><!--   用户名   -->
 
@@ -84,20 +84,33 @@
     },
     methods: {
       handleSelect(key, keyPath) {
-        console.log(key, keyPath);
+        // console.log(key, keyPath);
       },
       errorHandler() {
         return true
       },
+      login:function(){
+        this.$router.push({path:'/login'});
+      },
       //退出登录
       loginOut:function () {
+        this.$store.dispatch("loginOut",{})
+          .then(res => {
+            this.$message('退出登陆');
+            console.log("销毁token成功")
+          }).catch(error => {
+          console.log(error)
+        })
         this.$router.push({path:'/login'});
+        location.reload();
+        console.log(window.localStorage)
       },
       //打印token
       my:function () {
-        console.log("当前token是："+this.token);
-        console.log("当前图片是："+this.avatarUrl);
-        console.log("登录状态："+this.loginStatus);
+        // console.log("当前token是："+this.token);
+        // console.log("当前图片是："+this.avatarUrl);
+        // console.log("登录状态："+this.loginStatus);
+        // console.log(window.localStorage)
       },
       gotoIndex:function(){
         this.$router.push({path:'/index'});
@@ -125,7 +138,7 @@
       },
     },
     mounted() {
-      this.my();
+      // this.my();
     }
 
   }
@@ -149,8 +162,10 @@
 
 <style scoped>
   #Header{
+    width: 100%;
     font-weight: bolder;
-
+    position: fixed;
+    z-index: 999;
   }
   a{
     text-decoration: none;
